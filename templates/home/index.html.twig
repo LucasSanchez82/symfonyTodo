@@ -24,5 +24,25 @@
 			<a href="{{ path('add_todo') }}">
 				<li>Ajouter une todo</li>
 			</a>
-		</div>
-	{% endblock %}
+		</ul>
+
+		<table class='todo-table'>
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Fait ?</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for todo in todos %}
+					<tr>
+						<td>{{ todo.title }}</td>
+						<td>{{ todo.description }}</td>
+						<td>{{ todo.finished ? "✅" : "❌"}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
