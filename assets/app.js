@@ -1,10 +1,10 @@
-import './bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
-import './styles/app.css';
+import "./styles/app.css";
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+document.querySelectorAll(".remove-button").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const response = prompt("Are you sure you want to delete this item? (y/n)");
+    if (!(response[0] === "y")) {
+      e.preventDefault();
+    }
+  });
+});
