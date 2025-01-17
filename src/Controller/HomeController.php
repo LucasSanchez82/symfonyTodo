@@ -12,7 +12,7 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(TodoRepository $todoRepository): Response
     {
-        $todos = $todoRepository->findAll();
+        $todos = $todoRepository->findAllOrderedById();
         return $this->render('home/index.html.twig', [
             'todos' => $todos
         ]);

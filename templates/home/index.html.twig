@@ -32,6 +32,7 @@
 					<th>Titre</th>
 					<th>Description</th>
 					<th>Fait ?</th>
+					<th>action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,6 +41,11 @@
 						<td>{{ todo.title }}</td>
 						<td>{{ todo.description }}</td>
 						<td>{{ todo.finished ? "✅" : "❌"}}</td>
+						<td>
+							<a href="{{ path('edit_todo', {'id': todo.id}) }}">
+								Editer
+							</a>
+						</td>
 					</tr>
 				{% endfor %}
 			</tbody>

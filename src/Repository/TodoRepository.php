@@ -16,6 +16,11 @@ class TodoRepository extends ServiceEntityRepository
         parent::__construct($registry, Todo::class);
     }
 
+    public function findAllOrderedById(): array
+    {
+        return $this->findBy(array(), array('id' => 'ASC'));
+    }
+
     //    /**
     //     * @return Todo[] Returns an array of Todo objects
     //     */
