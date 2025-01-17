@@ -32,7 +32,8 @@
 					<th>Titre</th>
 					<th>Description</th>
 					<th>Fait ?</th>
-					<th>action</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,6 +45,12 @@
 						<td>
 							<a href="{{ path('edit_todo', {'id': todo.id}) }}">
 								Editer
+							</a>
+						</td>
+
+						<td>
+							<a href="{{ path('remove_todo', {'id': todo.id}) }}">
+								Supprimer
 							</a>
 						</td>
 					</tr>
