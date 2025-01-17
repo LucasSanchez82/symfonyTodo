@@ -20,8 +20,8 @@ class Todo
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?bool $finished = null;
+    #[ORM\Column(options: ["default" => false])]
+    private ?bool $finished = false; // Initialize with default value
 
     public function getId(): ?int
     {
