@@ -14,9 +14,18 @@ final class HomeController extends AbstractController
     public function index(TodoRepository $todoRepository, Request $request): Response
     {
         $search = $request->query->get('search') ?? "";
-        $todos = $todoRepository->findByTitleContaining($search);
+        $filter = $request->query->get('filter') ?? "";
+        $filterOptions = [
+            "all",
+            "checked",
+            "unchecked",
+        ];
+
+        $filter = in_array($filter, $filterOptions) ? $filter : "all";
+        $todos = $todoRepository->findByTitleContaining($search, $filter);
+
         return $this->render('home/index.html.twig', [
-            'todos' => $todos
+            'todos' => $todos,
         ]);
     }
 }
