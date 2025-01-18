@@ -19,7 +19,10 @@
 
 	<div class="example-wrapper">
 		<h1>Bienvenue sur todo maker !</h1>
-
+		<form method='GET'>
+			<input type='search' name='search' placeholder='Rechercher une todo' autofocus>
+			<button type='submit'>🔎 Rechercher 🔍</button>
+		</form>
 		<ul>
 			<a href="{{ path('add_todo') }}">
 				<li>Ajouter une todo</li>

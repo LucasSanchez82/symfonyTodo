@@ -18,7 +18,16 @@ class TodoRepository extends ServiceEntityRepository
 
     public function findAllOrderedById(): array
     {
-        return $this->findBy(array(), array('id' => 'ASC'));
+        return $this->findBy(array('title' => '%saved%'), array('id' => 'ASC'));
+    }
+    public function findByTitleContaining(string $str): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.title LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $str . '%')
+            ->orderBy('t.title', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
