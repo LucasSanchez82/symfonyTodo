@@ -15,6 +15,37 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}{% endblock %}
+		<nav>
+			<ul>
+				<a href="{{ path('app_home') }}">
+					<li>todo</li>
+				</a>
+				<ul>
+					<a href="{{ path('add_todo') }}">
+						<li>Ajouter une todo</li>
+					</a>
+
+				</ul>
+				<a href="{{path('app_user_index')}}">
+					<li>users</li>
+				</a>
+				<ul>
+					<a href="{{ path('app_user_new') }}">
+						<li>add user</li>
+					</a>
+				</ul>
+				<a href="{{ path('app_category_index') }}">
+					<li>category</li>
+					<ul>
+						<a href="{{ path('app_category_new') }}">
+							<li>add category</li>
+						</a>
+					</ul>
+				</a>
+			</ul>
+		</nav>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
 	</body>
-</html>
+</html></body></html>
