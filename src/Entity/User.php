@@ -25,7 +25,7 @@ class User
     /**
      * @var Collection<int, Todo>
      */
-    #[ORM\ManyToMany(targetEntity: Todo::class, inversedBy: 'todos')]
+    #[ORM\ManyToMany(targetEntity: Todo::class, mappedBy: 'users')]
     private Collection $todos;
 
     #[ORM\Column(length: 255)]

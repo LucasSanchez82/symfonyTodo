@@ -31,12 +31,12 @@ class Todo
     /**
      * @var Collection<int, User>
      */
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'todos')]
-    private Collection $todos;
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'todos', cascade: ['persist'])]
+    private Collection $users;
 
     public function __construct()
     {
-        $this->todos = new ArrayCollection();
+        $this->users = new ArrayCollection();
     } // Initialize with default value
 
     public function getId(): ?int
@@ -95,25 +95,25 @@ class Todo
     /**
      * @return Collection<int, User>
      */
-    public function getTodos(): Collection
+    public function getUsers(): Collection
     {
-        return $this->todos;
+        return $this->users;
     }
 
-    public function addTodo(User $todo): static
+    public function addUser(User $user): static
     {
-        if (!$this->todos->contains($todo)) {
-            $this->todos->add($todo);
-            $todo->addTodo($this);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addTodo($this);
         }
 
         return $this;
     }
 
-    public function removeTodo(User $todo): static
+    public function removeUser(User $user): static
     {
-        if ($this->todos->removeElement($todo)) {
-            $todo->removeTodo($this);
+        if ($this->users->removeElement($user)) {
+            $user->removeTodo($this);
         }
 
         return $this;

@@ -15,17 +15,12 @@ final class AddTodoController extends AbstractController
     #[Route('/add/todo', name: 'add_todo')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TodoType::class);
+        $todo = new Todo();
+        $form = $this->createForm(TodoType::class, $todo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $todoToAdd = new Todo();
-            $todoToAdd->setTitle($data->getTitle());
-            $todoToAdd->setDescription($data->getDescription());
-            $todoToAdd->setFinished($data->isFinished());
-
-            $entityManager->persist($todoToAdd);
+            $entityManager->persist($todo);
             $entityManager->flush();
             return $this->redirectToRoute('app_home');
         }

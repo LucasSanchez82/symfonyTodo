@@ -19,17 +19,17 @@ class TodoType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('finished')
-            ->add('todos', EntityType::class, [
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+            ])
+            ->add('users', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => function (User $user) {
                     return $user->getFirstname() . ' ' . $user->getLastname();
                 },
                 'multiple' => true,
-                'expanded' => true
-            ])
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'name',
+                'expanded' => true,
             ])
             ->add('submit', SubmitType::class)
         ;

@@ -17,11 +17,6 @@ class UserType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('phone')
-            ->add('todos', EntityType::class, [
-                'class' => Todo::class,
-                'choice_label' => 'title',
-                'multiple' => true,
-            ])
         ;
     }
 
