@@ -21,7 +21,10 @@ class Todo
     private ?string $description = null;
 
     #[ORM\Column(options: ["default" => false])]
-    private ?bool $finished = false; // Initialize with default value
+    private ?bool $finished = false;
+
+    #[ORM\ManyToOne(inversedBy: 'todos')]
+    private ?Category $category = null; // Initialize with default value
 
     public function getId(): ?int
     {
@@ -60,6 +63,18 @@ class Todo
     public function setFinished(bool $finished): static
     {
         $this->finished = $finished;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

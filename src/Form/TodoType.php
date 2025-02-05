@@ -16,6 +16,7 @@ class TodoType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('finished')
+            ->add('category')
             ->add('submit', SubmitType::class)
         ;
     }
