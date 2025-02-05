@@ -20,12 +20,13 @@ class TodoRepository extends ServiceEntityRepository
     {
         return $this->findBy(array('title' => '%saved%'), array('id' => 'ASC'));
     }
-    public function findByTitleContaining(string $str, string $filter): array
+    public function findByTitleContaining(string $str, string $filter, string $sort = 'ASC'): array
     {
+        $sortASC = strtoupper($sort) === 'DESC';
         $stmt = $this->createQueryBuilder('t')
             ->where('t.title LIKE :searchTerm')
             ->setParameter('searchTerm', '%' . $str . '%')
-            ->orderBy('t.title', 'ASC');
+            ->orderBy('t.title', $sortASC ? 'DESC' : 'ASC');
         switch ($filter) {
             case "checked":
                 $stmt->andWhere('t.finished = true');

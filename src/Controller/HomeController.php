@@ -15,6 +15,7 @@ final class HomeController extends AbstractController
     {
         $search = $request->query->get('search') ?? "";
         $filter = $request->query->get('filter') ?? "";
+        $sort = strtoupper($request->query->get('sort')) ?? "ASC";
         $filterOptions = [
             "all",
             "checked",
@@ -22,7 +23,7 @@ final class HomeController extends AbstractController
         ];
 
         $filter = in_array($filter, $filterOptions) ? $filter : "all";
-        $todos = $todoRepository->findByTitleContaining($search, $filter);
+        $todos = $todoRepository->findByTitleContaining($search, $filter, $sort);
 
         return $this->render('home/index.html.twig', [
             'todos' => $todos,
